@@ -1,23 +1,38 @@
 const fs = require('fs');
 const path = require('path');
 
-console.log('this is my Create command');
+const [ testName ] = process.argv.splice(3);
 
 module.exports = {
   run
 }
 
 function run() {
-  console.log('running!');
+  console.log('this is my Create command, running!');
 
   const replaces = new Map([
     [/{DESCRIPTION}/ig, 'ThisIsMyTest'],
     [/{SPECIFICATION}/ig, 'specify this'],
-  ])
+  ]);
 
-  loadTemplate('base', replaces);
+  console.log(loadTemplate('base', replaces));
+  console.log(getTestName());
+  console.log(getTestDescription())
+}
 
-  console.log(path.resolve(__dirname, '../templates/base.js'));
+function getFileName(testName) {
+  return testName;
+}
+
+function getTestDescription(testName) {
+  return testName
+    .split('-')
+    .map(capitalize)
+    .join('')
+}
+
+function capitalize(word) {
+  return word[0].toUpperCase() + word.slice(1)
 }
 
 function loadTemplate(name, replaces) {
@@ -25,7 +40,8 @@ function loadTemplate(name, replaces) {
     replaces.forEach((k, v) => {
       output = output.replace(v, k)
     });
-  console.log(output)
-
+  return output;
 }
+
+
 
