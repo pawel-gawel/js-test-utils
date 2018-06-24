@@ -17,9 +17,8 @@ console.log(commandPath)
 let command;
 try {
   command = require(commandPath);
+  command.run();
 } catch (e) {
   console.error(e);
   process.exit(1);
 }
-
-command.run();

@@ -22,5 +22,8 @@
   "homepage": "https://github.com/pawel-gawel/ui-test-utils#readme",
   "peerDependencies": {
     "mocha": "^5.2.0"
+  },
+  "dependencies": {
+    "commander": "^2.15.1"
   }
 }

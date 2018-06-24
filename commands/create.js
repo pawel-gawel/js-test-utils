@@ -1,7 +1,15 @@
 const fs = require('fs');
 const path = require('path');
+const program = require('commander');
 
-const [ testName ] = process.argv.splice(3);
+program
+  .usage('[options] <test-name>')
+  .option('-t, --template [name]', 'Specify template [name]', 'base')
+  .parse(process.argv);
+
+console.log(Object.keys(program))
+
+const testName = process.argv.pop();
 const defaultExt = 'js';
 
 module.exports = {
@@ -18,7 +26,7 @@ function run() {
     [/{SPECIFICATION}/ig, specification],
   ]);
 
-  writeFile(fileName, loadTemplate('base', replaces));
+  writeFile(fileName, loadTemplate(program.template, replaces));
 
   console.log(`\n\nFile ${fileName} saved!\n`);
 }
@@ -51,9 +59,15 @@ function capitalize(word) {
 }
 
 function loadTemplate(name, replaces) {
-  let output = fs.readFileSync(path.resolve(__dirname, `../templates/${name}.js`)).toString('utf-8');
-    replaces.forEach((k, v) => {
-      output = output.replace(v, k)
-    });
+  let output;
+  try {
+    output = fs.readFileSync(path.resolve(__dirname, `../templates/${name}.js`)).toString('utf-8');
+  } catch (e) {
+    throw Error(`Could not find ${name} template`);
+  }
+  
+  replaces.forEach((k, v) => {
+    output = output.replace(v, k)
+  });
   return output;
 }
