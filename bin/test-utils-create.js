@@ -16,16 +16,18 @@ run(program.args.pop(), program.template);
 function run(testName, template) {
   const description = getdescription(testName);
   const specification = 'specify this';
-  const fileName = getFileName(testName);
+  const originFileName = getOriginFileName(testName);
+  const outputFileName = getOutputFileName(originFileName);
 
   const replaces = new Map([
     [/__DESCRIPTION__/ig, description],
     [/__SPECIFICATION__/ig, specification],
+    [/__ORIGIN_FILENAME__/ig, originFileName]
   ]);
 
-  writeFile(fileName, loadTemplate(template, replaces));
+  writeFile(outputFileName, loadTemplate(template, replaces));
 
-  console.log(`\n\nFile ${fileName} saved!\n`);
+  console.log(`\n\nFile ${outputFileName} saved!\n`);
 }
 
 function getdescription(testName) {
@@ -39,14 +41,19 @@ function writeFile(filename, fileContents) {
   fs.writeFileSync(filename, fileContents);
 }
 
-function getFileName(testName) {
+function getOriginFileName(testName) {
   const ext = getFileExtension(testName);
-  return testName.concat('-test.'.concat(ext));
+  return testName.concat('.').concat(ext);
+}
+
+function getOutputFileName(origin) {
+  const [ name, ext ] = origin.split('.');
+  return name.concat('-test.').concat(ext);
 }
 
 function getFileExtension(testName) {
   return fs.readdirSync(process.cwd())
-    .filter(entry => entry.startsWith(testName))
+    .filter(entry => entry.startsWith(testName.concat('.')))
     .map(entry => entry.split('.')[1])
     .pop() || defaultExt;
 }

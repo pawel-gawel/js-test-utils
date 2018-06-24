@@ -6,7 +6,7 @@ import {
   spy
 } from '@automatic-labs/ui-test-utils';
 
-import __DESCRIPTION__ from '...';
+import __DESCRIPTION__ from './__ORIGIN_FILENAME__';
 
 describe('__DESCRIPTION__', () => {
   let wrapper;
