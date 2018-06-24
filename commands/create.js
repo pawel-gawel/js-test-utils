@@ -16,14 +16,10 @@ function run() {
     [/{SPECIFICATION}/ig, 'specify this'],
   ]);
   
-  loadTemplate('base', replaces);
-  console.log(getFileName(testName));
-  ;
-  console.log(getFileExtension(testName))
-}
-
-function getFileName(testName) {
-  return testName;
+  saveTestFile(
+    getFileName(testName),
+    loadTemplate('base', replaces)
+  );
 }
 
 function getTestDescription(testName) {
@@ -33,13 +29,21 @@ function getTestDescription(testName) {
     .join('')
 }
 
+function saveTestFile(filename, contents) {
+  fs.writeFileSync(filename, contents);
+}
+
+function getFileName(testName) {
+  const ext = getFileExtension(testName);
+  return testName.concat('-test.'.concat(ext));
+}
+
 function getFileExtension(testName) {
   return fs.readdirSync(process.cwd())
     .filter(entry => entry.startsWith(testName))
     .map(entry => entry.split('.')[1])
     .pop() || defaultExt;
 }
-
 
 function capitalize(word) {
   return word[0].toUpperCase() + word.slice(1)
