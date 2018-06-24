@@ -4,22 +4,22 @@
   "description": "",
   "main": "index.js",
   "bin": {
-    "test-utils": "scripts/test-utils.sh",
-    "js-test-utils": "bin/test-utils.js"
+    "test-utils": "bin/test-utils.js",
+    "test-utils-legacy": "scripts/test-utils.sh"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pawel-gawel/ui-test-utils.git"
+    "url": "git+https://github.com/pawel-gawel/test-utils.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/pawel-gawel/ui-test-utils/issues"
+    "url": "https://github.com/pawel-gawel/test-utils/issues"
   },
-  "homepage": "https://github.com/pawel-gawel/ui-test-utils#readme",
+  "homepage": "https://github.com/pawel-gawel/test-utils#readme",
   "peerDependencies": {
     "mocha": "^5.2.0"
   },

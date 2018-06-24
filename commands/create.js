@@ -2,21 +2,16 @@ const fs = require('fs');
 const path = require('path');
 const program = require('commander');
 
+const defaultExt = 'js';
+
 program
   .usage('[options] <testName>')
   .option('-t, --template [name]', 'Specify template [name]', 'base')
   .parse(process.argv);
 
-console.log(Object.keys(program), program.template)
+run(program.args.pop(), program.template);
 
-const testName = process.argv.pop();
-const defaultExt = 'js';
-
-module.exports = {
-  run
-}
-
-function run() {
+function run(testName, template) {
   const description = getdescription(testName);
   const specification = 'specify this';
   const fileName = getFileName(testName);
@@ -26,7 +21,7 @@ function run() {
     [/{SPECIFICATION}/ig, specification],
   ]);
 
-  writeFile(fileName, loadTemplate('base', replaces));
+  writeFile(fileName, loadTemplate(template, replaces));
 
   console.log(`\n\nFile ${fileName} saved!\n`);
 }
