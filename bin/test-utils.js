@@ -18,7 +18,7 @@ let command;
 try {
   command = require(commandPath);
 } catch (e) {
-  console.error('Command does not exist');
+  console.error(e);
   process.exit(1);
 }
 

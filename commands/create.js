@@ -9,28 +9,29 @@ module.exports = {
 }
 
 function run() {
-  console.log('this is my Create command, running!');
+  const description = getdescription(testName);
+  const specification = 'specify this';
+  const fileName = getFileName(testName);
 
   const replaces = new Map([
-    [/{DESCRIPTION}/ig, getTestDescription(testName)],
-    [/{SPECIFICATION}/ig, 'specify this'],
+    [/{DESCRIPTION}/ig, description],
+    [/{SPECIFICATION}/ig, specification],
   ]);
-  
-  saveTestFile(
-    getFileName(testName),
-    loadTemplate('base', replaces)
-  );
+
+  writeFile(fileName, loadTemplate('base', replaces));
+
+  console.log(`\n\nFile ${fileName} saved!\n`);
 }
 
-function getTestDescription(testName) {
+function getdescription(testName) {
   return testName
     .split('-')
     .map(capitalize)
     .join('')
 }
 
-function saveTestFile(filename, contents) {
-  fs.writeFileSync(filename, contents);
+function writeFile(filename, fileContents) {
+  fs.writeFileSync(filename, fileContents);
 }
 
 function getFileName(testName) {
@@ -56,6 +57,3 @@ function loadTemplate(name, replaces) {
     });
   return output;
 }
-
-
-
