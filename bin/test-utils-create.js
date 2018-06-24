@@ -49,7 +49,7 @@ function getOriginFileName(testName) {
   if (testName.indexOf('.') > 0) {
     return testName;
   }
-  const ext = getFileExtension(testName);
+  const ext = deriveFileExtension(testName);
   return testName.concat('.').concat(ext);
 }
 
@@ -58,7 +58,7 @@ function getOutputFileName(origin) {
   return name.concat('-test.').concat(ext);
 }
 
-function getFileExtension(testName) {
+function deriveFileExtension(testName) {
   return fs.readdirSync(process.cwd())
     .filter(entry => entry.startsWith(testName.concat('.')))
     .map(entry => entry.split('.')[1])
