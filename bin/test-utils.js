@@ -2,7 +2,6 @@
 
 const fs = require('fs');
 const path = require('path');
-const commandName = process.argv[2];
 
 var program = require('commander');
  

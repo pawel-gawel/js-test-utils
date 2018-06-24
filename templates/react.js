@@ -1,11 +1,11 @@
 import React from 'react';
 
-describe('{DESCRIPTION}', () => {
+describe('__DESCRIPTION__', () => {
   beforeEach(() => {
 
   });
 
-  it('{SPECIFICATION}', () => {
+  it('__SPECIFICATION__', () => {
     
   });
 

@@ -19,8 +19,8 @@ function run(testName, template) {
   const fileName = getFileName(testName);
 
   const replaces = new Map([
-    [/{DESCRIPTION}/ig, description],
-    [/{SPECIFICATION}/ig, specification],
+    [/__DESCRIPTION__/ig, description],
+    [/__SPECIFICATION__/ig, specification],
   ]);
 
   writeFile(fileName, loadTemplate(template, replaces));

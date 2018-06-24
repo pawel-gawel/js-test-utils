@@ -6,13 +6,13 @@ import {
   spy
 } from '@automatic-labs/ui-test-utils';
 
-import {DESCRIPTION} from '...';
+import __DESCRIPTION__ from '...';
 
-describe('{DESCRIPTION}', () => {
+describe('__DESCRIPTION__', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<{DESCRIPTION} />);
+    wrapper = shallow(<__DESCRIPTION__ />);
   });
 
   it('should render', () => {
