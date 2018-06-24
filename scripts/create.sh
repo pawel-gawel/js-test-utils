@@ -1,7 +1,10 @@
 #!/bin/bash
 
+templatesDir="$(dirname $0)/../templates/"
+baseTemplateName="base.js"
+
 usage() { 
-  printf "\nUsage: $0 [-t <template path>] test-name.\n
+  printf "\nUsage: $0 [-t <template path>] test-name\n
 If there is a file in current directory matching the name,
 newly created test file will have the same extension.\n\n" 1>&2; 
   exit 1;
@@ -12,7 +15,7 @@ newly created test file will have the same extension.\n\n" 1>&2;
 while getopts ":t:h" o; do
     case "${o}" in
         t)
-            templateFilePath=${OPTARG}
+            templateName=${OPTARG}
             ;;
         h)
             usage
@@ -34,13 +37,18 @@ if [ $# -ne 1 ]; then
   usage
 fi
 
+# verify if we have template
 
+templatePath="${templatesDir}${templateName:=$baseTemplateName}"
+echo $templatePath
+if [ ! -f $templatePath ]; then
+  templatePath="${templatePath}.js"
+  if [ ! -f $templatePath ]; then
+    echo "Could not find template ${templateName}" >&2; exit 1;
+  fi
+fi
 
 printf "\n\nGenerating...\n"
-
-templatesDir="$(dirname $0)/../templates/"
-baseTemplateName="base.js"
-baseTemplatePath="${templatesDir}${templateFilePath:=baseTemplateName}"
 
 # getting test name
 
@@ -71,6 +79,6 @@ done
 
 # generate file with placeholder replacement
 
-sed -e "s/{DESCRIPTION}/${DESCRIPTION}/g" $baseTemplatePath | sed -e "s/{SPECIFICATION}/halo/g" > $testFileName
+sed -e "s/{DESCRIPTION}/${DESCRIPTION}/g" $templatePath | sed -e "s/{SPECIFICATION}/halo/g" > $testFileName
 
 printf "\nFile ${testFileName} generated successfully!\n\n";
