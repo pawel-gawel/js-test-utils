@@ -32,7 +32,11 @@ To create new test suit, go with
 test-utils create my-awesome-name
 ```
 
-where `my-awesome-name` should be a dashed name of existing module to be covered by tests.
+where `my-awesome-name` should be a dashed name of existing module to be covered by tests. It could also be relative path to existing file
+
+```
+test-utils create examples/my-awesome-component.jsx
+```
 
 Output file will have name of `my-awesome-name-test.ext`, where `ext` will be derived from existing module file (if there is one with maching name). If not, default `js` extension will be used.
 
