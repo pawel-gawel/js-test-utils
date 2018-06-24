@@ -1,10 +1,48 @@
-#!bin/bash
+#!/bin/bash
+
+usage() { 
+  printf "\nUsage: $0 [-t <template path>] test-name.\n
+If there is a file in current directory matching the name,
+newly created test file will have the same extension.\n\n" 1>&2; 
+  exit 1;
+}
+
+# parsing options
+
+while getopts ":t:h" o; do
+    case "${o}" in
+        t)
+            templateFilePath=${OPTARG}
+            ;;
+        h)
+            usage
+            ;;
+        \?)
+            echo "Invalid option: -$OPTARG" >&2
+            ;;
+        :)
+          echo "Option -$OPTARG requires an argument." >&2
+          exit 1
+          ;;
+    esac
+done
+shift $((OPTIND-1))
+
+# do we have test name passed to the script?
+
+if [ $# -ne 1 ]; then
+  usage
+fi
+
+
 
 printf "\n\nGenerating...\n"
 
 templatesDir="$(dirname $0)/../templates/"
 baseTemplateName="base.js"
-baseTemplatePath="${templatesDir}${baseTemplateName}"
+baseTemplatePath="${templatesDir}${templateFilePath:=baseTemplateName}"
+
+# getting test name
 
 testName="default-test-name"
 if [ -n $1 ]; then
