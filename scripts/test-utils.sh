@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "welcome to test-utils"
 
 if [ -z "$1" ]; then

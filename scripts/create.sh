@@ -1,3 +1,5 @@
+#!bin/bash
+
 printf "\n\nGenerating...\n"
 
 templatesDir="$(dirname $0)/../templates/"
