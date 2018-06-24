@@ -12,13 +12,13 @@ function run() {
   console.log('this is my Create command, running!');
 
   const replaces = new Map([
-    [/{DESCRIPTION}/ig, 'ThisIsMyTest'],
+    [/{DESCRIPTION}/ig, getTestDescription(testName)],
     [/{SPECIFICATION}/ig, 'specify this'],
   ]);
-
+  
   loadTemplate('base', replaces);
   console.log(getFileName(testName));
-  getTestDescription(testName);
+  ;
   console.log(getFileExtension(testName))
 }
 
