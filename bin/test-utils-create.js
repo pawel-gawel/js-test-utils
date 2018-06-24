@@ -13,16 +13,16 @@ program
 
 run(program.args.pop(), program.template);
 
-function run(testName, template) {
-  const description = getdescription(testName);
+function run(name, template) {
+  const description = getdescription(name);
   const specification = 'specify this';
-  const originFileName = getOriginFileName(testName);
+  const originFileName = getOriginFileName(name);
   const outputFileName = getOutputFileName(originFileName);
 
   const replaces = new Map([
     [/__DESCRIPTION__/ig, description],
     [/__SPECIFICATION__/ig, specification],
-    [/__ORIGIN_FILENAME__/ig, originFileName]
+    [/__ORIGIN_FILENAME__/ig, originFileName.split('/').pop()]
   ]);
 
   writeFile(outputFileName, loadTemplate(template, replaces));
@@ -30,8 +30,12 @@ function run(testName, template) {
   console.log(`\n\nFile ${outputFileName} saved!\n`);
 }
 
-function getdescription(testName) {
-  return testName
+function getdescription(name) {
+  return name
+    .split('/')
+    .pop()
+    .split('.')
+    .pop()
     .split('-')
     .map(capitalize)
     .join('')
@@ -42,6 +46,9 @@ function writeFile(filename, fileContents) {
 }
 
 function getOriginFileName(testName) {
+  if (testName.indexOf('.') > 0) {
+    return testName;
+  }
   const ext = getFileExtension(testName);
   return testName.concat('.').concat(ext);
 }
