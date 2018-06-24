@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const [ testName ] = process.argv.splice(3);
+const defaultExt = 'js';
 
 module.exports = {
   run
@@ -15,9 +16,10 @@ function run() {
     [/{SPECIFICATION}/ig, 'specify this'],
   ]);
 
-  console.log(loadTemplate('base', replaces));
-  console.log(getTestName());
-  console.log(getTestDescription())
+  loadTemplate('base', replaces);
+  console.log(getFileName(testName));
+  getTestDescription(testName);
+  console.log(getFileExtension(testName))
 }
 
 function getFileName(testName) {
@@ -30,6 +32,14 @@ function getTestDescription(testName) {
     .map(capitalize)
     .join('')
 }
+
+function getFileExtension(testName) {
+  return fs.readdirSync(process.cwd())
+    .filter(entry => entry.startsWith(testName))
+    .map(entry => entry.split('.')[1])
+    .pop() || defaultExt;
+}
+
 
 function capitalize(word) {
   return word[0].toUpperCase() + word.slice(1)
