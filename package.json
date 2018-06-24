@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/pawel-gawel/ui-test-utils/issues"
   },
-  "homepage": "https://github.com/pawel-gawel/ui-test-utils#readme"
+  "homepage": "https://github.com/pawel-gawel/ui-test-utils#readme",
+  "peerDependencies": {
+    "mocha": "^5.2.0"
+  }
 }
