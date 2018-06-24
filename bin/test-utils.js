@@ -14,14 +14,12 @@ if (!commandName) {
 const commandPath = `../commands/${commandName}.js`;
 console.log(commandPath)
 
+let command;
 try {
-  const command = require(commandPath);
-  command.run();
+  command = require(commandPath);
 } catch (e) {
   console.error('Command does not exist');
   process.exit(1);
 }
 
-
-
-// console.log(fs.readFileSync(path.resolve(__dirname, '../templates/base.js')).toString('utf-8'));
+command.run();
