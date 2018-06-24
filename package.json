@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "bin": {
-    "test-utils": "scripts/test-utils.sh"
+    "test-utils": "bin/test-utils.sh",
+    "js-test-utils": "bin2/test-utils.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
