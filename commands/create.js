@@ -3,11 +3,11 @@ const path = require('path');
 const program = require('commander');
 
 program
-  .usage('[options] <test-name>')
+  .usage('[options] <testName>')
   .option('-t, --template [name]', 'Specify template [name]', 'base')
   .parse(process.argv);
 
-console.log(Object.keys(program))
+console.log(Object.keys(program), program.template)
 
 const testName = process.argv.pop();
 const defaultExt = 'js';
@@ -26,7 +26,7 @@ function run() {
     [/{SPECIFICATION}/ig, specification],
   ]);
 
-  writeFile(fileName, loadTemplate(program.template, replaces));
+  writeFile(fileName, loadTemplate('base', replaces));
 
   console.log(`\n\nFile ${fileName} saved!\n`);
 }
