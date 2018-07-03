@@ -16,15 +16,15 @@ while getopts ":h" o; do
             usage
             ;;
         \?)
-            echo "Invalid option: -$OPTARG" >&2
+            printf  "\n\tInvalid option: -$OPTARG\n\n"
+            exit 1
             ;;
     esac
 done
 shift $((OPTIND-1))
 
 if [ -z "$1" ]; then
-  printf "\n\tNo command passed, quiting. Use -h for help.\n\n"
-  exit 0
+  usage
 fi
 
 cmd="$(dirname $0)/test-$1"

@@ -80,6 +80,11 @@ if [ -f "$testFileName" ] && [ "$overwrite" != "true" ]; then
   exit 1
 fi
 
+# getting DESCRIPTION for substitution
+
+testName=${testName##*/}
+echo $testName
+
 # go from aaa-bbb-ccc to AaaBbbCcc
 
 for i in $(echo ${testName} | tr '-' ' '); do
