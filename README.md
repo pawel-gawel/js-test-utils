@@ -5,7 +5,7 @@
 Global installation is recommended if you plan to use terminal commands in multiple projects
 
 ```
-npm install -g @pawel-gawel/test-utils
+npm install -g @pawel-gawel/js-test-utils
 ```
 
 In case you plan to leverage bootstrap scripts, you should install it as a project's dev dependency
@@ -16,7 +16,7 @@ npm install -save-dev @pawel-gawel/js-test-utils
 
 ## Terminal commands
 
-When installed globally, program `test-utils` is available in the terminal.
+When installed globally, command `test-utils` is available in the terminal.
 
 One can find current usage by typing 
 
