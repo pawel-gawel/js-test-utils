@@ -4,9 +4,9 @@ templatesDir="$(dirname $(realpath $0))/../templates/"
 baseTemplateName="base.js"
 
 usage() { 
-  printf "\nUsage: test-gen [-t <template path>] test-name\n
-If there is a file in current directory matching the name,
-newly created test file will have the same extension.\n\n" 1>&2; 
+  printf "\n\tUsage: test-gen [-t <template path>] test-name\n
+\tIf there is a file in current directory matching the name,
+\tnewly created test file will have the same extension.\n\n" 1>&2;
   exit 1;
 }
 
