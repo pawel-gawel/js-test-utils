@@ -4,7 +4,7 @@ printf "\n\t~=~ Welcome to test-utils ~=~\n"
 
 usage() {
   printf "\n\tUsage: test-utils <command> [-h] [...params]\n
-\tAvailable commands: gen\n\n" 1>&2;
+\tAvailable commands: gen\n\n" >&2;
   exit 1;
 }
 
@@ -16,7 +16,7 @@ while getopts ":h" o; do
             usage
             ;;
         \?)
-            printf  "\n\tInvalid option: -$OPTARG\n\n"
+            printf  "\n\tInvalid option: -$OPTARG\n\n" >&2
             exit 1
             ;;
     esac

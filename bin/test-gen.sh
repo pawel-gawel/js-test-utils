@@ -25,12 +25,9 @@ while getopts ":t:h:f" o; do
             overwrite=true
             ;;
         \?)
-            echo "Invalid option: -$OPTARG" >&2
+            printf "\n\tInvalid option: -$OPTARG\n\n" >&2
+            exit 1
             ;;
-        :)
-          echo "Option -$OPTARG requires an argument." >&2
-          exit 1
-          ;;
     esac
 done
 shift $((OPTIND-1))
@@ -76,7 +73,7 @@ testFileName="${testName}-test.${ext}"
 # check if file already exists
 
 if [ -f "$testFileName" ] && [ "$overwrite" != "true" ]; then
-  printf "\n\tFile $testFileName already exists. If you want to overwrite it, use -f option\n\n"
+  printf "\n\tFile $testFileName already exists. If you want to overwrite it, use -f option\n\n" >&2
   exit 1
 fi
 
