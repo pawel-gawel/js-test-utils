@@ -1,6 +1,6 @@
 #!/bin/bash
 
-templatesDir="$(dirname $0)/../templates/"
+templatesDir="$(dirname $(realpath $0))/../templates/"
 baseTemplateName="base.js"
 
 usage() { 
