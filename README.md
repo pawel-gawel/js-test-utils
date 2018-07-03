@@ -11,7 +11,7 @@ npm install -g @pawel-gawel/test-utils
 In case you plan to leverage bootstrap scripts, you should install it as a project's dev dependency
 
 ```
-npm install -save-dev @pawel-gawel/test-utils
+npm install -save-dev @pawel-gawel/js-test-utils
 ```
 
 ## Terminal commands
@@ -29,13 +29,15 @@ test-utils -h
 To create new test suite, go with
 
 ```
-test-utils create my-awesome-name
+test-utils gen my-awesome-name
+# or 
+test-gen my-awesome-name
 ```
 
 where `my-awesome-name` should be a dashed name of existing module to be covered by tests. It could also be relative path to existing file
 
 ```
-test-utils create examples/my-awesome-component.jsx
+test-gen examples/my-awesome-component.jsx
 ```
 
 Output file will have name of `my-awesome-name-test.ext`, where `ext` will be derived from existing module file (if there is one with maching name). If not, default `js` extension will be used.
@@ -45,7 +47,7 @@ Output file will have name of `my-awesome-name-test.ext`, where `ext` will be de
 You can also specify which template you want to use for new test suite, like 
 
 ```
-test-utils --template react my-awesome-component
+test-gen --template react my-awesome-component
 ```
 
 Currently there are only `base` and `react` templates available.
