@@ -7,8 +7,7 @@ overwrite=false
 usage() { 
   printf "\n\tUsage: test-gen [-t <template path>] test-name\n
 \tIf there is a file in current directory matching the name,
-\tnewly created test file will have the same extension.\n\n" 1>&2;
-  exit 1;
+\tnewly created test file will have the same extension.\n\n" 1>&2; exit 1
 }
 
 # parsing options
@@ -25,8 +24,7 @@ while getopts ":t:h:f" o; do
             overwrite=true
             ;;
         \?)
-            printf "\n\tInvalid option: -$OPTARG\n\n" >&2
-            exit 1
+            printf "\n\tInvalid option: -$OPTARG\n\n" >&2; exit 1
             ;;
     esac
 done
@@ -44,7 +42,7 @@ templatePath="${templatesDir}${templateName:=$baseTemplateName}"
 if [ ! -f $templatePath ]; then
   templatePath="${templatePath}.js"
   if [ ! -f $templatePath ]; then
-    echo "Could not find template ${templateName}" >&2; exit 1;
+    echo "Could not find template ${templateName}" >&2; exit 1
   fi
 fi
 
@@ -73,8 +71,7 @@ testFileName="${testName}-test.${ext}"
 # check if file already exists
 
 if [ -f "$testFileName" ] && [ "$overwrite" != "true" ]; then
-  printf "\n\tFile $testFileName already exists. If you want to overwrite it, use -f option\n\n" >&2
-  exit 1
+  printf "\n\tFile $testFileName already exists. If you want to overwrite it, use -f option\n\n" >&2; exit 1
 fi
 
 # getting DESCRIPTION for substitution
