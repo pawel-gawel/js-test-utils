@@ -4,7 +4,7 @@ templatesDir="$(dirname $(realpath $0))/../templates/"
 baseTemplateName="base.js"
 
 usage() { 
-  printf "\nUsage: $0 [-t <template path>] test-name\n
+  printf "\nUsage: test-gen [-t <template path>] test-name\n
 If there is a file in current directory matching the name,
 newly created test file will have the same extension.\n\n" 1>&2; 
   exit 1;
@@ -40,7 +40,6 @@ fi
 # verify if we have template
 
 templatePath="${templatesDir}${templateName:=$baseTemplateName}"
-echo $templatePath
 if [ ! -f $templatePath ]; then
   templatePath="${templatePath}.js"
   if [ ! -f $templatePath ]; then
@@ -48,7 +47,7 @@ if [ ! -f $templatePath ]; then
   fi
 fi
 
-printf "\n\nGenerating...\n"
+printf "\nGenerating...\n"
 
 # getting test name
 
