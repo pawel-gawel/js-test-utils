@@ -24,9 +24,9 @@ One can find current usage by typing
 test-utils -h
 ```
 
-### Create new test suit
+### Create new test suite
 
-To create new test suit, go with
+To create new test suite, go with
 
 ```
 test-utils create my-awesome-name
@@ -42,7 +42,7 @@ Output file will have name of `my-awesome-name-test.ext`, where `ext` will be de
 
 #### Test templates
 
-You can also specify which template you want to use for new test suit, like 
+You can also specify which template you want to use for new test suite, like 
 
 ```
 test-utils --template react my-awesome-component
