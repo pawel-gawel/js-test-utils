@@ -2,7 +2,7 @@
   "name": "@pawel-gawel/test-utils",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "bin/test-utils.sh",
   "bin": {
     "test-utils": "bin/test-utils.sh",
     "test-gen": "bin/test-gen.sh"
