@@ -78,6 +78,6 @@ done
 
 # generate file with placeholder replacement
 
-sed -e "s/{DESCRIPTION}/${DESCRIPTION}/g" $templatePath | sed -e "s/{SPECIFICATION}/halo/g" > $testFileName
+sed -e "s/__DESCRIPTION__/${DESCRIPTION}/g" $templatePath | sed -e "s/__SPECIFICATION__/halo/g" > $testFileName
 
 printf "\nFile ${testFileName} generated successfully!\n\n";
