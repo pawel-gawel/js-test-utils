@@ -2,6 +2,7 @@
 
 templatesDir="$(dirname $(realpath $0))/../templates/"
 baseTemplateName="base.js"
+overwrite=false
 
 usage() { 
   printf "\n\tUsage: test-gen [-t <template path>] test-name\n
@@ -12,13 +13,16 @@ usage() {
 
 # parsing options
 
-while getopts ":t:h" o; do
+while getopts ":t:h:f" o; do
     case "${o}" in
         t)
             templateName=${OPTARG}
             ;;
         h)
             usage
+            ;;
+        f)
+            overwrite=true
             ;;
         \?)
             echo "Invalid option: -$OPTARG" >&2
@@ -47,7 +51,7 @@ if [ ! -f $templatePath ]; then
   fi
 fi
 
-printf "\nGenerating...\n"
+printf "\n\tGenerating...\n"
 
 # getting test name
 
@@ -69,6 +73,13 @@ fi
 
 testFileName="${testName}-test.${ext}"
 
+# check if file already exists
+
+if [ -f "$testFileName" ] && [ "$overwrite" != "true" ]; then
+  printf "\n\tFile $testFileName already exists. If you want to overwrite it, use -f option\n\n"
+  exit 1
+fi
+
 # go from aaa-bbb-ccc to AaaBbbCcc
 
 for i in $(echo ${testName} | tr '-' ' '); do
@@ -80,4 +91,4 @@ done
 
 sed -e "s/__DESCRIPTION__/${DESCRIPTION}/g" $templatePath | sed -e "s/__SPECIFICATION__/halo/g" > $testFileName
 
-printf "\nFile ${testFileName} generated successfully!\n\n";
+printf "\n\tFile ${testFileName} generated successfully!\n\n";
