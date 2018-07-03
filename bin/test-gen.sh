@@ -74,10 +74,8 @@ if [ -f "$testFileName" ] && [ "$overwrite" != "true" ]; then
   printf "\n\tFile $testFileName already exists. If you want to overwrite it, use -f option\n\n" >&2; exit 1
 fi
 
-# getting DESCRIPTION for substitution
-
-testName=${testName##*/}
-echo $testName
+testName=$(basename $testName)
+testPath=$(dirname $testFileName)
 
 # go from aaa-bbb-ccc to AaaBbbCcc
 
@@ -88,6 +86,9 @@ done
 
 # generate file with placeholder replacement
 
+if [ -n "$testPath" ]; then
+  mkdir -p $testPath
+fi
 sed -e "s/__DESCRIPTION__/${DESCRIPTION}/g" $templatePath | sed -e "s/__SPECIFICATION__/halo/g" > $testFileName
 
 printf "\n\tFile ${testFileName} generated successfully!\n\n";
