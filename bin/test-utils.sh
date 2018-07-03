@@ -7,7 +7,7 @@ if [ -z "$1" ]; then
   exit 0
 fi
 
-cmd="$(dirname $0)/$1.sh"
+cmd="$(dirname $0)/test-$1"
 
 shift
 $cmd $@
