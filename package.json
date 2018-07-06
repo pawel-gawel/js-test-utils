@@ -9,10 +9,13 @@
     "test-watch": "bin/test-watch.sh"
   },
   "scripts": {
-    "test": "mocha -w --watch-extensions js --recursive --require babel-polyfill --require babel-register src/**/*-test.js"
+    "test": "test-run",
+    "watch": "test-watch"
   },
   "babel": {
-    "presets": ["env"]
+    "presets": [
+      "env"
+    ]
   },
   "repository": {
     "type": "git",
@@ -24,15 +27,11 @@
     "url": "https://github.com/pawel-gawel/test-utils/issues"
   },
   "homepage": "https://github.com/pawel-gawel/test-utils#readme",
-  "peerDependencies": {
-    "mocha": "^5.2.0"
-  },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
     "chai": "^4.1.2",
-    "commander": "^2.15.1",
     "mocha": "^5.2.0",
     "sinon": "^6.1.2"
   }
