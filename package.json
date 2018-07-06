@@ -25,7 +25,10 @@
     "mocha": "^5.2.0"
   },
   "dependencies": {
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
     "commander": "^2.15.1",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "sinon": "^6.1.2"
   }
 }
