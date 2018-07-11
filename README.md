@@ -26,11 +26,11 @@ test-utils -h
 
 ### Watch tests
 
-,,,
-test-watch [glob...]
-# or
+```
 test-utils watch [glob...]
-,,,
+# or
+test-watch [glob...]
+```
 
 Default `glob` is `src/**/*-test.*` to promote next-to-code test location convention.
 
