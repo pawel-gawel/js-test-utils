@@ -5,13 +5,13 @@
 Global installation is recommended if you plan to use terminal commands in multiple projects
 
 ```
-npm install -g @pawel-gawel/js-test-utils
+npm install -g @pawel-gawel/test-utils
 ```
 
 In case you plan to leverage bootstrap scripts, you should install it as a project's dev dependency
 
 ```
-npm install -save-dev @pawel-gawel/js-test-utils
+npm install -save-dev @pawel-gawel/test-utils
 ```
 
 ## Terminal commands
@@ -23,6 +23,16 @@ One can find current usage by typing
 ```
 test-utils -h
 ```
+
+### Watch tests
+
+,,,
+test-watch [glob...]
+# or
+test-utils watch [glob...]
+,,,
+
+Default `glob` is `src/**/*-test.*` to promote next-to-code test location convention.
 
 ### Create new test suite
 

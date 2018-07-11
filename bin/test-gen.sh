@@ -12,21 +12,24 @@ usage() {
 
 # parsing options
 
-while getopts ":t:h:f" o; do
-    case "${o}" in
-        t)
-            templateName=${OPTARG}
-            ;;
-        h)
-            usage
-            ;;
-        f)
-            overwrite=true
-            ;;
-        \?)
-            printf "\n\tInvalid option: -$OPTARG\n\n" >&2; exit 1
-            ;;
-    esac
+while getopts ":t:hfv" o; do
+  case "${o}" in
+    t)
+      templateName=${OPTARG}
+      ;;
+    h)
+      usage
+      ;;
+    f)
+      overwrite=true
+      ;;
+    v)
+      set -x
+      ;;
+    \?)
+      printf "\n\tInvalid option: -$OPTARG\n\n" >&2; usage
+      ;;
+  esac
 done
 shift $((OPTIND-1))
 
