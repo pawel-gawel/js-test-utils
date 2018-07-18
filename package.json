@@ -6,6 +6,7 @@
   "bin": {
     "test-utils": "bin/test-utils.sh",
     "test-gen": "bin/test-gen.sh",
+    "test-run": "bin/test-run.sh",
     "test-watch": "bin/test-watch.sh"
   },
   "scripts": {

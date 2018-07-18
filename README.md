@@ -24,6 +24,16 @@ One can find current usage by typing
 test-utils -h
 ```
 
+### Run tests
+
+```
+test-utils run [glob...]
+# or
+test-run [glob...]
+```
+
+Default `glob` is `src/**/*-test.*` to promote next-to-code test location convention.
+
 ### Watch tests
 
 ```
