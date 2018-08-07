@@ -28,6 +28,13 @@ done
 shift $((OPTIND-1))
 
 glob=${@:-src/**/*-test.*}
+
+if [ -z "${envName}" ]; then
+  envName="react"
+  printf "\nAssuming env to be ${envName}...";
+fi
+printf "\nLoading ${envName} env...";
+
 env=" --require ${envsDir}${envName}.js"
 
 ./node_modules/.bin/mocha \
